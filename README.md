@@ -12,16 +12,17 @@
 - Output in GitHub (make sure that I can access your Github):
 
 ### Average Execution Time 
- Y  | Average Time (ms) | Min | Max
---- | --- | --- | ---
-10 | 0.00019 |	0.0001 | 0.0005		
-100 | 0.00066 | 0.0004 | 0.0013  	
-1000 | 0.00544 | 0.0038 | 0.0208
-9000 | 0.03131 | 0.0177 | 0.0476
+ Y | 10 | 100 | 1000 | 10000
+--- | --- | --- | --- | ---
+Average Execution Time (ns) | 103.33 | 520.00 | 3663.33 | 23216.67
+Min | 0	| 400 | 2200 | 15300
+Max | 200 | 1100 | 8200 | 49900
 
 ### Short Analysis of the Performance
 
 ## Take a screenshot of the program output with the correctness check.
+![Screenshot_with_correctness)](image.png)
+
 
 
 ## Short Videos (5-10mins) showing your source code, compilation, and execution of the C and x86-64 program
