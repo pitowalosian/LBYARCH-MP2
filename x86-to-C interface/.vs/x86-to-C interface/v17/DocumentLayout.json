@@ -30,7 +30,8 @@
               "RelativeToolTip": "x86-to-C interface\\asmlbyarch-mp2.asm",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-08-05T01:15:30.928Z"
+              "WhenOpened": "2026-08-05T01:15:30.928Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,7 +41,7 @@
               "RelativeDocumentMoniker": "x86-to-C interface\\clbyarch-mp2.c",
               "ToolTip": "C:\\Users\\pitow\\OneDrive\\Documents\\GitHub\\LBYARCH-MP2\\x86-to-C interface\\x86-to-C interface\\clbyarch-mp2.c",
               "RelativeToolTip": "x86-to-C interface\\clbyarch-mp2.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-08-05T01:10:47.62Z",
               "EditorCaption": ""
