@@ -1,8 +1,5 @@
 # LBYARCH-MP2
 
-### TODO
-- Output in GitHub (make sure that I can access your Github):
-
 ## Performance Analysis
 
 ### ASM Average Execution Time 
@@ -17,14 +14,16 @@ As seen from the table above, there is a positive relationship between the numbe
 
 ## Take a screenshot of the program output with the correctness check.
 For this part, I compared the output of the ASM function `calc_accel` with the output of the C function `calc_accel_c`. I also used an external website [see References] to cross-check these answers to get the accuracy of my program. 
+
 ![Screenshot_with_correctness_1)](/screenshots/car1.png)
 ![Screenshot_with_correctness_1)](/screenshots/car2.png)
 ![Screenshot_with_correctness_1)](/screenshots/car3.png)
 ![Screenshot_with_correctness_1)](/screenshots/car4.png)
 ![Screenshot_with_correctness_1)](/screenshots/car5.png)
-Note: The program uses round to nearest rounding method, so it is implied that we also use the same rounding method when cross-checking with the acceleration calculator.
+
+**Note:** The program uses round to nearest rounding method, so it is implied that we also use the same rounding method when cross-checking with the acceleration calculator.
 
 ## Short Videos (5-10mins) showing your source code, compilation, and execution of the C and x86-64 program
 
-### References
+## References
 https://www.omnicalculator.com/physics/acceleration
