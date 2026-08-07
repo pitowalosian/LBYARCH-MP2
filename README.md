@@ -14,7 +14,7 @@ The table above shows the average execution time in nanoseconds for Assembly and
 
 For comparison purposes, I created a `calc_accel_c` C function that is programmed to also calculate the acceleration, just like the `calc_accel` block in ASM. In a `y = 10` input size, the average execution time for the C function is `26 ns`, while the ASM code's average execution time is `24.67 ns` only, leading to a `1.33 ns` difference for this input size.
 
-Overall, the data supports the conclusion that ASM is more efficient than C, since all input sizes result to ASM having a quicker average execution time than C 
+Overall, the data supports the conclusion that ASM is more efficient than C, since all input sizes result to ASM having a quicker average execution time than C.
 
 ## Take a screenshot of the program output with the correctness check.
 For this part, I compared the output of the ASM function `calc_accel` with the output of the C function `calc_accel_c`. I also used an external website [see References] to cross-check these answers to get the accuracy of my program. 
@@ -28,6 +28,7 @@ For this part, I compared the output of the ASM function `calc_accel` with the o
 **Note:** The program uses round to nearest rounding method, so it is implied that we also use the same rounding method when cross-checking with the acceleration calculator.
 
 ## Short Videos (5-10mins) showing your source code, compilation, and execution of the C and x86-64 program
+![Demo_video](/video/LBYARCH-MP2_Demo_Video.mp4)
 
 ## References
 https://www.omnicalculator.com/physics/acceleration

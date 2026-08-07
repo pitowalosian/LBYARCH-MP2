@@ -2,25 +2,27 @@
 #include <stdlib.h>
 #include <time.h>
 #include <Windows.h>
-#define MAX_CARS 10
-#define MAX_TEST 30
+#define MAX_CARS 100
+#define MAX_TEST 1
 #define MPS 0.27777778
 
 extern int lf_to_int(double lf);
 extern double calc_accel(double in_v, double fin_v, double time);
 
 static void save_time(FILE* file, int calc_accel_ms[], int test_number) {
+    // Save time in file
     if (file == NULL) {
         printf("Error opening file for writing.\n");
         return;
     }
     for (int i = 0; i < test_number; i++) {
-        fprintf(file, "%d\n", calc_accel_ms[i]);
+		fprintf(file, "%d\n", calc_accel_ms[i]); // Iterate through the array and write each value to the file
     }
     fclose(file);
 }
 
 static double calc_accel_c(double in_v, double fin_v, double time) {
+    // Calculate acceleration using C
     double diff = fin_v - in_v;
     double accel = diff * MPS / time;
     return accel;
@@ -29,10 +31,10 @@ static double calc_accel_c(double in_v, double fin_v, double time) {
 int main() {
 	srand((unsigned int)time(NULL)); // seed random generator with current time
 
-    int k = 0; // main test loop 
+    int k = 0; // main test loop counter
 
-    FILE* file = fopen("10_time.txt", "w");
-	FILE* file_c = fopen("10_time_c.txt", "w");
+    FILE* file = fopen("demo.txt", "w");
+	FILE* file_c = fopen("demo_c.txt", "w");
 
     // per-test timing (one value per test)
     int calc_accel_ns[MAX_TEST] = { 0 };
@@ -43,6 +45,7 @@ int main() {
 
     while (k != MAX_TEST) {     // main test loop
         printf("\nTest %d:\n", k + 1);
+        double y = 0.0;
         double in_v[MAX_CARS] = { 0.0 };
         double fin_v[MAX_CARS] = { 0.0 };
         double time_s[MAX_CARS] = { 0.0 };
@@ -51,25 +54,25 @@ int main() {
 
         //printf("Enter the amount of cars: ");
         //scanf_s("%lf", &y);
+		//char c = getchar(); // consume the newline character left in the input buffer
 
-        double y = MAX_CARS;
+        y = MAX_CARS;
         int int_y = lf_to_int(y);
-
+        
+		//printf("Enter the initial velocity, final velocity, and time for each car:\n");
         for (int i = 0; i < int_y; i++) {
-            /*
-			scanf_s("%lf, %lf, %lf", &in_v[i], &fin_v[i], &time_s[i]);
-            get_char();
-            */
+            //scanf_s("%lf, %lf, %lf", &in_v[i], &fin_v[i], &time_s[i]);
 
+			// Generate random values for initial velocity, final velocity, and time for each car
             in_v[i] = (double)rand() / RAND_MAX * 100.0;
             fin_v[i] = (double)rand() / RAND_MAX * 200.0;
             time_s[i] = (double)rand() / RAND_MAX * 15.0;
         }
 
 		// For correctness check, print the input values for each car
-        /*for (int i = 0; i < int_y; i++) {
+        for (int i = 0; i < int_y; i++) {
             printf("Car %d: Initial Velocity = %.2lf km/h, Final Velocity = %.2lf km/h, Time = %.2lf s\n", i + 1, in_v[i], fin_v[i], time_s[i]);
-		}*/
+		}
 
         printf("\n--------------------------Output--------------------------\n");
         double result[MAX_CARS] = { 0.0 };
@@ -108,6 +111,8 @@ int main() {
             printf("%5d m/s^2", accel[i]);
             accel_c[i] = lf_to_int(result_c[i]);
             printf("\t\t%5d m/s^2", accel_c[i]);
+
+			// if both values are equal, print "Correct", else print "Incorrect"
             if (accel[i] == accel_c[i]) {
                 printf("\t\t    Correct\n");
             }
@@ -134,9 +139,11 @@ int main() {
         k++;
     }
 
+	// calculate average time for all tests
     double avg_time = (double)sum / k;
     double avg_time_c = (double)sum_c / k;
 
+	// save the per-test average times to files
     save_time(file, calc_accel_ns, k);
 	save_time(file_c, calc_accel_ns_c, k);
 
