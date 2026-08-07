@@ -3,20 +3,22 @@
 #include <time.h>
 #include <Windows.h>
 
-#define MAX_CARS 10
+#define MAX_CARS 9000
 #define MAX_TEST 30
+#define MPS 0.27777778
 
 extern int lf_to_int(double lf);
 extern double calc_accel(double in_v, double fin_v, double time);
 
 static void save_time(int calc_accel_ms[], int test_number) {
-	FILE* file = fopen("test.txt", "w"); // Open in append mode
+	FILE* file = fopen("c_9000_time.txt", "w"); // Open in write mode
 
 	if (file == NULL) {
 		printf("Error opening file for writing.\n");
 		return;
 	}
 
+	// Write the execution times to the file
 	for (int i = 0; i < test_number; i++) {
 		fprintf(file, "%d\n", calc_accel_ms[i]);
 	}
@@ -25,8 +27,9 @@ static void save_time(int calc_accel_ms[], int test_number) {
 }
 
 static double calc_accel_c(double in_v, double fin_v, double time) {
+	// Calculate acceleration using C code
 	double diff = fin_v - in_v;
-	double accel = diff * 1000.0 * 1 / 3600 / time; // Convert km/h to m/s and divide by time
+	double accel = diff * MPS / time; // Convert km/h to m/s and divide by time
 
 	return accel;
 }
@@ -37,17 +40,20 @@ int main() {
 	int k = 0;
 	int calc_accel_ms[MAX_TEST];
 
-	while (k != MAX_TEST) {
+	while (k != MAX_TEST) {		// Main test loop
 		printf("\nTest %d:\n", k + 1);
 		double y = 0.0;
 		double in_v[MAX_CARS] = { 0.0 };
 		double fin_v[MAX_CARS] = { 0.0 };
 		double time_s[MAX_CARS] = { 0.0 };
 
+		LARGE_INTEGER freq, start, end;
+		QueryPerformanceFrequency(&freq);   // ticks per second
+
 		//printf("Enter the amount of cars: ");
 		//scanf_s("%lf", &y);
 
-		y = MAX_CARS;
+		y = MAX_CARS; // Set the number of cars to MAX_CARS for testing
 		int int_y = lf_to_int(y); // Convert to integer
 
 		//printf("Enter the initial velocity, final velocity, and time of each car: \n");
@@ -71,21 +77,18 @@ int main() {
 		double result_c[MAX_CARS] = { 0.0 };
 
 		// --- Timing starts here ---
-
+		//QueryPerformanceCounter(&start);
 		for (int i = 0; i < int_y; i++) {
 			result[i] = calc_accel(in_v[i], fin_v[i], time_s[i]);
 		}
+		//QueryPerformanceCounter(&end);
 
-		LARGE_INTEGER freq, start, end;
-		QueryPerformanceFrequency(&freq);   // ticks per second
 		QueryPerformanceCounter(&start);
-
 		for (int i = 0; i < int_y; i++) {
 
 			result_c[i] = calc_accel_c(in_v[i], fin_v[i], time_s[i]);
 
 		}
-
 		QueryPerformanceCounter(&end);
 
 		int accel[MAX_CARS] = { 0 };
@@ -112,7 +115,7 @@ int main() {
 		}
 
 		calc_accel_ms[k] = (end.QuadPart - start.QuadPart) * 1e9 / freq.QuadPart;
-		printf("\nTime taken to calculate acceleration for %d cars: %d ns\n", int_y, calc_accel_ms[k]);
+		printf("\nTime taken to calculate acceleration for %d cars: %d ns\n\n", int_y, calc_accel_ms[k]);
 
 		k++;
 	}
