@@ -27,7 +27,7 @@ For this part, I compared the output of the ASM function `calc_accel` with the o
 
 **Note:** The program uses round to nearest rounding method, so it is implied that we also use the same rounding method when cross-checking with the acceleration calculator.
 
-## Short Videos (5-10mins) showing your source code, compilation, and execution of the C and x86-64 program
+## Short Video (5-10mins) showing source code, compilation, and execution of the C and x86-64 program
 ![Demo_video](/video/LBYARCH-MP2_Demo_Video.mp4)
 
 ## References
